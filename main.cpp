@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
         {
             std::fprintf(create_configs_file, "%s", "executorMap\n{\n#Example\n\"c\" : \"gcc main.c\",\n\"cpp\" : \"g++ main.cpp\"\n}");
             std::puts("map.txt has been created in this directory \"C:\\executor\", "
-                      "You may open map.txt to complete the configurations ... program terminated."); 
+                      "You may open map.txt to complete the configurations and run the program again.");  
             std::fclose(create_configs_file);  
         }
         else
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
     while (token)
     {
         tokens.append(token);
-        tokens.push_back('\0');
+        tokens.push_back(' ');
         token = strtok(NULL, " "); 
     }
 
@@ -93,22 +93,19 @@ int main(int argc, char *argv[])
             continue;
         }
 
-        if(read == 0 && content[i] == '\0')
-        {
-            content[i] = ' ';
-        }
+        int len = 0;
 
         if(read == 0 && (
-                         ( !strncmp(&content[i], "\"c\"", 3) && !strcmp(argv[1], "c") )      ||
-                         ( !strncmp(&content[i], "\"cpp\"", 5) && !strcmp(argv[1], "cpp") )
+                         ( (!strncmp(&content[i], "\"c\"", len = 3) || !strncmp(&content[i], "\" c \"", len = 5)) && !strcmp(argv[1], "c") )      ||
+                         ( (!strncmp(&content[i], "\"cpp\"", len = 5) || !strncmp(&content[i], "\" cpp \"", len = 7)) && !strcmp(argv[1], "cpp") )
                         )
           ) 
         {
-            i += strlen(argv[1]) + 6;  
+            i += strlen(argv[1]) + len + 1;   
             /* Fetch user's configurations */
             for (; content[i] != '"'; ++i)
             {
-                if(content[i] == '\0' || content[i] == '\n')
+                if(content[i] == '\n')
                 {
                     content[i] = ' '; 
                 }
@@ -128,4 +125,6 @@ int main(int argc, char *argv[])
 
     return EXIT_SUCCESS; 
 }
+
+
 
