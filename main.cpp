@@ -50,12 +50,12 @@ int main(int argc, char *argv[])
     if(!file_content)
     {
         std::puts("Out of memory ... program terminated.");
-        std::fclose(configs_file);
+        std::fclose(map_file);
         return EXIT_FAILURE;
     }
 
     /* Reading content of executor's map file */
-    std::fread((void *) file_content, sizeof(char), file_size, configs_file);
+    std::fread((void *) file_content, sizeof(char), file_size, map_file);
     file_content[file_size] = '\0';
 
     
