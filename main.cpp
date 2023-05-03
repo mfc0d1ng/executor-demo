@@ -88,6 +88,7 @@ int main(int argc, char *argv[])
         {
             read = 1;  
         }
+        
         if(read == 1 && content[i] == '\n')
         {
             read = 0;
