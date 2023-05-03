@@ -111,7 +111,7 @@ int main(int argc, char *argv[])
                 i += strlen(argv[1]) + (len + 1); 
             }
 
-            /* Fetch user's configurations */
+            /* Fetch user's configuration */
             for (; content[i] != '"'; ++i)
             {
                 if(content[i] == '\n')
@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 
     }
     
-    /* Execute user's configurations */
+    /* Execute user's configuration */
     std::system(cmd.c_str());
 
     /* Clean up */
