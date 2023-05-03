@@ -6,7 +6,7 @@ int main(int argc, char *argv[])
 {
     if(argc > 2)
     {
-        std::puts("Invalid number of arguments...program terminated.");
+        std::puts("Invalid number of arguments ... program terminated.");
         return EXIT_FAILURE; 
     }
     
