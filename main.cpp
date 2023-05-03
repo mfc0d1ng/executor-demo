@@ -123,7 +123,6 @@ int main(int argc, char *argv[])
             cmd.shrink_to_fit(); 
             break;
         }
-
     }
     
     /* Execute user's configuration */
