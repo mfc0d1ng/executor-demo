@@ -78,7 +78,8 @@ int main(int argc, char *argv[])
     char *content = (char *) tokens.c_str();
     std::size_t content_size = tokens.size(); 
     int read = 0;
-
+    int len = 0;
+    
    
     /* Going through executor's map file */
     for (std::size_t i = 12; i < content_size; i++)
@@ -92,8 +93,6 @@ int main(int argc, char *argv[])
             read = 0;
             continue;
         }
-
-        int len = 0;
 
         if(read == 0 && (
                          ( (!strncmp(&content[i], "\"c\"", len = 3) || !strncmp(&content[i], "\" c \"", len = 5)) && !strcmp(argv[1], "c") )      ||
