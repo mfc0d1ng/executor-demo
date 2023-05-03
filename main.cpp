@@ -34,7 +34,8 @@ int main(int argc, char *argv[])
         }
         return EXIT_SUCCESS; 
     }
-
+    
+    /* Open executor's map file if this condition is fulfilled */
     if(argc == 3 && !strcmp(argv[2], "map"))
     {
         std::string open_map_file = {};
