@@ -22,16 +22,16 @@ int main(int argc, char *argv[])
     }
 
     /* Opening executor's map file */
-    FILE *configs_file = fopen("C:\\executor\\map.txt", "r");
-    if(!configs_file)
+    FILE *map_file = fopen("C:\\executor\\map.txt", "r");
+    if(!map_file)
     {
-        FILE *create_configs_file = fopen("C:\\executor\\map.txt", "w");
-        if(create_configs_file)
+        FILE *create_map_file = fopen("C:\\executor\\map.txt", "w");
+        if(create_map_file)
         {
-            std::fprintf(create_configs_file, "%s", "executorMap\n{\n#Example\n\"c\" : \"gcc main.c\",\n\"cpp\" : \"g++ main.cpp\"\n}");
+            std::fprintf(create_map_file, "%s", "executorMap\n{\n#Example\n\"c\" : \"gcc main.c\",\n\"cpp\" : \"g++ main.cpp\"\n}");
             std::puts("map.txt has been created in this directory \"C:\\executor\", "
                       "You may open map.txt to complete the configurations and run the program again.");  
-            std::fclose(create_configs_file);  
+            std::fclose(create_map_file);  
         }
         else
         {
@@ -42,9 +42,9 @@ int main(int argc, char *argv[])
     }
 
     /* Getting size of executor's map file  */ 
-    std::fseek(configs_file, 0, SEEK_END);
-    std::size_t file_size = ftell(configs_file);
-    std::fseek(configs_file, 0, SEEK_SET); 
+    std::fseek(map_file, 0, SEEK_END);
+    std::size_t file_size = ftell(map_file);
+    std::fseek(map_file, 0, SEEK_SET); 
 
     char *file_content = (char *) std::malloc(file_size + 1);
     if(!file_content)
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
     std::system(cmd.c_str());
 
     /* Clean up */
-    std::fclose(configs_file);
+    std::fclose(map_file);
 
     return EXIT_SUCCESS; 
 }
