@@ -100,7 +100,16 @@ int main(int argc, char *argv[])
                         )
           ) 
         {
-            i += strlen(argv[1]) + len + 1;   
+            
+            if(!strcmp(argv[1], "c"))
+            {
+                i += strlen(argv[1]) + (len + 3);   
+            }
+            else if(!strcmp(argv[1], "cpp"))
+            {
+                i += strlen(argv[1]) + (len + 1); 
+            }
+
             /* Fetch user's configurations */
             for (; content[i] != '"'; ++i)
             {
@@ -124,6 +133,3 @@ int main(int argc, char *argv[])
 
     return EXIT_SUCCESS; 
 }
-
-
-
