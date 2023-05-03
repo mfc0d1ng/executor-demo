@@ -4,7 +4,7 @@
 
 int main(int argc, char *argv[])
 {
-    if(argc > 2)
+    if(argc > 3)
     {
         std::puts("Invalid number of arguments ... program terminated.");
         return EXIT_FAILURE; 
@@ -12,12 +12,6 @@ int main(int argc, char *argv[])
     
     if(strcmp(argv[0], "executor"))
     {
-        return EXIT_FAILURE;
-    }
-    
-    if( !( !strcmp(argv[1], "c") || !strcmp(argv[1], "cpp") ) )
-    {
-        std::printf("Invalid option ==> (%s) ... program terminated.\n", argv[1]); 
         return EXIT_FAILURE;
     }
 
@@ -39,6 +33,31 @@ int main(int argc, char *argv[])
             return EXIT_FAILURE; 
         }
         return EXIT_SUCCESS; 
+    }
+
+    if(argc == 3 && !strcmp(argv[2], "map"))
+    {
+        std::string open_map_file = {};
+        open_map_file.append(argv[1]);
+        open_map_file.append(" ");
+        open_map_file.append("C:\\executor\\map.txt");
+        open_map_file.shrink_to_fit();
+        std::system(open_map_file.c_str());
+        std::fclose(map_file);
+        return EXIT_SUCCESS;
+    }
+    else if(argc == 3 && strcmp(argv[2], "map"))
+    {
+        std::printf("Invalid option ==> (%s) ... program terminated.\n", argv[2]); 
+        std::fclose(map_file);
+        return EXIT_FAILURE;
+    }
+
+    if(argc == 2 && !( !strcmp(argv[1], "c") || !strcmp(argv[1], "cpp") ) )
+    {
+        std::printf("Invalid option ==> (%s) ... program terminated.\n", argv[1]); 
+        std::fclose(map_file);
+        return EXIT_FAILURE;
     }
 
     /* Getting size of executor's map file  */ 
