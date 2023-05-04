@@ -89,10 +89,10 @@ int main(int argc, char *argv[])
         tokens.push_back(' ');
         token = strtok(NULL, " "); 
     }
+    tokens.shrink_to_fit();
 
     /* Clean up */ 
     std::free(file_content);
-    tokens.shrink_to_fit();
 
     std::string cmd = {}; 
     char *content = (char *) tokens.c_str();
